@@ -28,18 +28,6 @@ public class Sss extends HttpServlet {
         pw.close();
     }
 
-    @Override
-    protected void doPost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-        System.out.println("SSS: post " + rq.getMethod());
-
-        PrintWriter pw = rs.getWriter();
-        pw.println("Sss: " + rq.getMethod());
-        pw.println("FirstName: " + rq.getParameter("firstname"));
-        pw.println("LastName: " + rq.getParameter("lastname"));
-        pw.close();
-    }
-
-    @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
         System.out.println("SSS: get");
 
@@ -47,7 +35,6 @@ public class Sss extends HttpServlet {
         pw.println("Sss: " + rq.getMethod());
         pw.println("FirstName: " + rq.getParameter("firstname"));
         pw.println("LastName: " + rq.getParameter("lastname"));
-        pw.println("getRemoteHost: " + rq.getQueryString());
         pw.close();
     }
 }
