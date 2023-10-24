@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>sed</groupId>
-    <artifactId>lab3</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>lab3</name>
+    <artifactId>lab4</artifactId>
+    <version>1.0</version>
+    <name>lab4</name>
     <packaging>war</packaging>
 
     <properties>
@@ -44,6 +44,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
-            </plugin>                </plugins>
+            </plugin>
+        </plugins>
     </build>
 </project>
