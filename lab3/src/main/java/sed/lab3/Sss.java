@@ -83,7 +83,7 @@ public class Sss extends HttpServlet {
                 break;
             case ("GetTwoInfoRedirect"):
                 printWriter.write("Info from Sss");
-                resp.sendRedirect("Ggg");
+                resp.sendRedirect("Ggg?parm=");
                 break;
             case ("HttpClientGet"):
                 HttpClient client = HttpClient.newBuilder()

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3</title>
+    <style>
+        body {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        div {
+            margin: 10px;
+            padding: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000000;
+            margin: 5px;
+        }
+
+        button {
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 5px;
+            background-color: #c7f7da;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h3>Задание 1 - (GET) Sss -> Ggg</h3>
+    <button><a href="Sss">Sss</a></button>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="MyParameter">
+        <button type="submit">Перейти</button>
+    </form>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="GetGggRedirect">
+        <button type="submit">Перенаправить</button>
+    </form>
+</div>
+<div>
+    <h3>Задание 2 - (POST) Sss -> Ggg</h3>
+    <form action="Sss" method="post">
+        <input type="hidden" name="parm" value="PostSss">
+        <button type="submit">Отправить POST</button>
+    </form>
+    <form action="Sss" method="post">
+        <input type="hidden" name="parm" value="PostGggForward">
+        <button type="submit">Перейти</button>
+    </form>
+    <form action="Sss" method="post">
+        <input type="hidden" name="parm" value="PostGggRedirect">
+        <button type="submit">Перенаправить</button>
+    </form>
+</div>
+<div>
+    <h3>Задание 3 - Получить Sss -> HTML</h3>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="GetHtmlForward">
+        <button type="submit">Перейти</button>
+    </form>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="GetHtmlRedirect">
+        <button type="submit">Перенаправить</button>
+    </form>
+</div>
+<div>
+    <h3>Задание 4 - Получить Sss -> Ggg -> HTML</h3>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="GetTwoHtmlForward">
+        <button type="submit">Перейти</button>
+    </form>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="GetTwoHtmlRedirect">
+        <button type="submit">Перенаправить</button>
+    </form>
+</div>
+<div>
+    <h3>Задание 5 - Получить информацию Sss -> Ggg</h3>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="GetTwoInfoForward">
+        <button type="submit">Перейти</button>
+    </form>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="GetTwoInfoRedirect">
+        <button type="submit">Перенаправить</button>
+    </form>
+</div>
+<div>
+    <h3>Задание 7 - GET-запрос Sss -> Ggg</h3>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="HttpClientGet">
+        <button type="submit">HTTP GET</button>
+    </form>
+</div>
+<div>
+    <h3>Задание 8- GET-запрос Sss -> Ggg (remote)</h3>
+    <form action="Sss" method="get">
+        <input type="hidden" name="parm" value="HttpClientGetRemote">
+        <button type="submit">HTTP GET</button>
+    </form>
+</div>
+<div>
+    <h3>Задание 9- POST-запрос Sss -> Ggg</h3>
+    <form action="Sss" method="post">
+        <input type="hidden" name="parm" value="HttpClientPost">
+        <button type="submit">HTTP POST</button>
+    </form>
+</div>
+</body>
+</html>
