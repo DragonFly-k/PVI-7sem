@@ -1,0 +1,163 @@
+<html>
+<head>
+    <title>Lab 11</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<h4>Task 1. Применение заголовков GET для обмена между сценарием JavaScript серверным приложением
+    <br>
+	<div>
+        <input type="text" title="" id="x" value="4">
+        <input type="text" title="" id="y" value="8"> <br>
+        <input type="text" title="" id="z" readonly="readonly">
+        <input type="button" value="sum" onclick="sum(true)">
+    </div>
+</h4>
+
+<h4>Task 1. Применение заголовков POST для обмена между сценарием JavaScript серверным приложением
+<br>
+    <form name="FHeader" action="#" method="Post">
+    <input id="x2" name="x2" type="text" value="2">
+    <input id="y2" name="y2" type="text" value="6"> <br>
+    <input id="z2" name="z2" type="text" value="z" readonly="readonly">
+    <input type="button" value="sum" onclick="sum2(this.form.x2.value, this.form.y2.value, this.form.z2.value,true)">
+</form>
+</h4>
+
+<h4>Task 2-3. Применение XML/JSON для обмена между сценарием JavaScript серверным приложением
+<form action="#" method="post">
+        <input name="n" id="n" type="text" placeholder="random value (int)" value="15">
+        <div id="result-task-2-1"></div>
+        <div id="result-task-2-2"></div>
+        <input type="button" value="xml" onclick="getXML(this.form.n.value,true)">
+        <input type="button" value="json" onclick="getJSON(this.form.n.value,true)">
+    </form>
+</h4>
+
+<h4>Task 4. Применение асинхронной обработки
+    <div>
+        <input type="button" value="sync" onclick="getSync()">
+        <input type="button" value="async" onclick="getAsync()">
+    </div>
+</h4>
+
+<script>
+
+    function getAsync() 
+    {
+        sum(true);
+        sum2(document.getElementById("x2").value,document.getElementById("y2").value,document.getElementById("z2").value,true);
+        getXML(document.getElementById("n").value, true);
+        getJSON(document.getElementById("n").value, true);
+    }
+
+    function getSync() 
+    {
+        sum(false);
+        sum2(document.getElementById("x2").value,document.getElementById("y2").value,document.getElementById("z2").value,false);
+        getXML(document.getElementById("n").value, false);
+        getJSON(document.getElementById("n").value, false);
+    }
+
+    function sum(async) {
+        console.log(async);
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "./Sss_Header", async);
+        xhr.setRequestHeader("Value-x", document.getElementById("x").value);
+        xhr.setRequestHeader("Value-y", document.getElementById("y").value);
+        xhr.send();
+        if (async) {
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById("z").value = xhr.getResponseHeader("Value-z");
+                }
+            };
+        } else {
+            document.getElementById("z").value = xhr.getResponseHeader("Value-z");
+        }
+    }
+
+    function sum2(x,y,z,async) 
+    {
+        console.log(async);
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "./Sss_Header", async);
+        xhr.setRequestHeader("Value-x", x);
+        xhr.setRequestHeader("Value-y", y);
+        xhr.send();
+        if (async) 
+        {
+            xhr.onreadystatechange = () => 
+            {
+                if (xhr.readyState === 4 && xhr.status === 200) 
+                {
+                    document.getElementById("z2").value = xhr.getResponseHeader("Value-z");
+                }
+            }
+        } 
+        else 
+        {
+            document.getElementById("z2").value = xhr.getResponseHeader("Value-z");
+        }
+    }
+
+    function getXML(n, async) {
+        console.log(async);
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "./Sss_Xml", async);
+        xhr.setRequestHeader("XRand-N", n);
+        xhr.send();
+        if (async) 
+        {
+            xhr.onreadystatechange = () => 
+            {
+                if (xhr.readyState === 4 && xhr.status === 200) 
+                {
+                    document.getElementById("result-task-2-1").innerHTML = stringifyXML(xhr);
+                }
+            }
+        } else 
+        {
+            document.getElementById("result-task-2-1").innerHTML = stringifyXML(xhr);
+        }
+    }
+
+    function getJSON(n, async)
+    {
+        console.log(async);
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "./Sss_Json", async);
+        xhr.setRequestHeader("XRand-N", n);
+        xhr.send();
+        if (async) {
+            xhr.onreadystatechange = () => 
+            {
+                if (xhr.readyState === 4 && xhr.status === 200) 
+                {
+                    document.getElementById("result-task-2-2").innerHTML = stringifyJSON(xhr);
+                }
+            }
+        } 
+        else 
+        {
+            document.getElementById("result-task-2-2").innerHTML = stringifyJSON(xhr);
+        }
+    }
+
+    function stringifyXML(request)
+    {
+        const xmlDoc = request.responseXML;
+        const arr = Array.from(xmlDoc.getElementsByTagName("num"));
+        return arr.map(number => number.innerHTML).join(" ");
+    }
+
+    function stringifyJSON(request)
+    {
+        const arr = JSON.parse(request.responseText);
+        return arr.join(" ");
+    }
+
+</script>
+</body>
+</html>
